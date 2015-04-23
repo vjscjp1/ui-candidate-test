@@ -1,22 +1,29 @@
      // Example unit test function
      function divide( a, b ) {
         // To see the test pass, uncomment the following line
-        //return a / b;
+        return a / b;
      }
 
      // Write a function that takes a single argument (a string) and returns the string reversed.
      function reverseString(str) {
-         // FILL THIS IN
+         return str.split('').reverse().join();
      }
 
      // Write a function that takes an array of numbers and returns the minimum value
      function findMinValue(values) {
-         // FILL THIS IN
+         return Math.min.apply(null, values);
      }
 
      // Write a function that takes an array and returns the distinct values only (i.e. removes duplicates)
      function findDistinctValues(values) {
-         // FILL THIS IN
+         var result = [];
+        
+         _.each(values, function(item) {
+             if(result.indexOf(item) < 0) {
+                 result.push(item);
+             }
+         });
+         return result;
      }
 
      // Write a function that logs the numbers from 1 to 100 to the console.
@@ -24,7 +31,28 @@
      // For multiples of five print "Buzz".
      // For numbers which are multiples of both three and five print "FizzBuzz".
      function doFizzBuzz() {
-         // FILL THIS IN
+         var output,
+             isMultipleOf3Or5 = false;
+         for (var i = 1; i < 101; i = i + 1) {
+             output = '';
+             isMultipleOf3Or5 = false;
+             if (i % 3 === 0) {
+                 isMultipleOf3Or5 = true;
+                 output += 'Fizz';   
+             }
+             
+             if (i % 5 === 0) {
+                 isMultipleOf3Or5 = true
+                 output += 'Buzz';   
+             }
+             
+             if (isMultipleOf3Or5) {
+                console.log(output);
+             } else {
+              
+                console.log(i);
+             }
+         }
      }
 
      // You have a master array of strings, where each element is a fruit name.
@@ -32,7 +60,14 @@
      // For the purpose of the exercise, we will call the master array fruits and the second array fruitsToRemove.
      // Write the function that will remove the values contained in fruitsToRemove from the array fruits.
      function removeFruits(fruits, fruitsToRemove) {
-         // FILL THIS IN
+         var countFruitsToRemove = fruitsToRemove.length;
+         for (var i = 0; i < countFruitsToRemove; i ++) {
+             indexInTarget = fruits.indexOf(fruitsToRemove[i]);
+             if (indexInTarget !== -1) {
+                fruits.splice(indexInTarget, 1);
+             }
+         }
+         return fruits;
      }
 
      // Write a function to push either a simple value or an array of values onto a specified array.
@@ -40,26 +75,48 @@
      // If toPush is a simple value, it should be pushed onto array as an element.
      // If toPush is an array, all of its elements should be pushed onto array. Your solution should modify array (ie. not return a new array).
      function pushOntoArray(array, toPush) {
-         // FILL THIS IN
+         if( Object.prototype.toString.call( toPush ) === '[object Array]' ) {
+             array = array.concat(toPush);
+         } else {
+             array.push(toPush);
+         }
      }
 
      // Given a string, sourceStr, write some code that will split this string using comma as your delimiter, and producing an empty array if the string is empty.
      function splitListStrUsingComma(sourceStr) {
-         // FILL THIS IN
+         return sourceStr === '' ? [] : sourceStr.split(',');
      }
 
      // Write a function that will take any number of arguments and return their sum
      function sum() {
-         // FILL THIS IN
+         var i,
+             result = 0,
+             argCount = arguments.length;
+         for (i = 0; i < argCount; i ++) {
+             if (typeof arguments[i] === 'number') {
+                 result += arguments[i];
+             }
+         }
+         return result;
      }
 
      // Write a function that will return true if a specified string consists of only whitespace.
      function isOnlyWhitespace(sourceStr) {
-         // FILL THIS IN
+         //TODO: Not sure what only while space. Get clearity and do the changes if required.
+         return sourceStr.trim() === "" ? true : false;
      }
 
      // write an example of a javascript closure
+     //Taken From W3C. Simplest exmple of clossure
+     //One of the common example is in Async call back functions
+     var add = (function () {
+          var counter = 0;
+          return function () {return counter += 1;}
+     })();
 
+     add();
+     add();
+     add();
      // define a json object that represents a collection of people.
      // each person should have the following properties
      // - first name
@@ -68,6 +125,52 @@
      // - state
      // - zip
      // - a collection of phone numbers (home, work, mobile)
+{
+     people: [
+          {
+               firstName: '',
+               lastName: '',
+               city: '',
+               state: '',
+               zip: '',
+               phoneNumbers: [
+                    {
+                         type: 'home',
+                         number: ''
+                    },
+                    {
+                         type: 'work',
+                         number: ''
+                    },
+                    {
+                         type: 'mobile',
+                         number: ''
+                    }
+               ]
+          },
+          {
+               firstName: '',
+               lastName: '',
+               city: '',
+               state: '',
+               zip: '',
+               phoneNumbers: [
+                    {
+                         type: 'home',
+                         number: ''
+                    },
+                    {
+                         type: 'work',
+                         number: ''
+                    },
+                    {
+                         type: 'mobile',
+                         number: ''
+                    }
+               ]
+          }
+     ]
+}
 
 
      // Create a javascript object (DataTable) with the following:
